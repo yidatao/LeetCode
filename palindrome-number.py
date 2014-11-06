@@ -1,6 +1,7 @@
 class Solution:
     # @return a boolean
     def isPalindrome0(self, x):
+        #consider negative integers
         if x < 0:
             return False
         num = str(x)
