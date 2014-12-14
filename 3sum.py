@@ -55,4 +55,4 @@ class Solution:
                         i3 -= 1
         return res
 
-print(Solution().threeSum1([0,0,0,0]))
+print(Solution().threeSum1([0,0,0,0,1]))
