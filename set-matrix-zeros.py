@@ -29,7 +29,7 @@ class Solution:
                 if matrix[i][0] == 0 or matrix[0][j] == 0:
                     matrix[i][j] = 0
 
-    
+
         if firstRowZero:
             for j in range(cols):
                 matrix[0][j] = 0
