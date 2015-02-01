@@ -2,6 +2,7 @@ class Solution:
     # @return an integer
     def lengthOfLongestSubstring(self, s):
         map = {}
+        #repeat is the most recent location where a duplicate happens
         longlen, repeat = 0, -1
         for i in range(len(s)):
             #if repeat >= map[s[i]], then no need to update repeat

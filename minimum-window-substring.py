@@ -11,16 +11,16 @@ class Solution:
             else:
                 map[s] = 1
 
-        #count is the length of substring in S that contains T
         left = right = count = 0
         windowLen = len(S) + 1
         while right < len(S):
             if S[right] in T:
                 map[S[right]] -= 1
-                #if < 0, meaning that S contains more S[right] than T does, doens't matter
+                #if < 0, meaning that S contains more S[right] than T does, used later to know when can push the left boundary forward
                 if map[S[right]] >= 0:
-                    count += 1
+                    count += 1 #only to count those contained in T
 
+                #right boundary already satisfy containing T, now push the left boundary
                 while count == len(T):
                     if S[left] in map:
                         map[S[left]] += 1
