@@ -6,7 +6,7 @@ class ListNode:
 
 class Solution:
     # @return a ListNode
-    def addTwoNumbers(self, l1, l2):
+    def addTwoNumbers0(self, l1, l2):
         l = ListNode(-1)
         p = l
         p1 = l1
@@ -39,3 +39,32 @@ class Solution:
             p.next = ListNode(carry)
 
         return l.next
+
+    def addTwoNumbers(self, l1, l2):
+        if l1 is None or l2 is None:
+            return l2 if l1 is None else l1
+        carry = 0
+        l = l1
+        lastPos = ListNode(-1)
+        while l1 and l2:
+            sum = l1.val + l2.val + carry
+            l1.val = sum % 10
+            carry = sum / 10
+            lastPos = l1
+            l1 = l1.next
+            l2 = l2.next
+
+        if l2:
+            lastPos.next = l2
+            l1 = lastPos.next
+        while l1:
+            sum = l1.val + carry
+            l1.val = sum % 10
+            carry = sum / 10
+            lastPos = l1
+            l1 = l1.next
+
+        if carry > 0:
+            lastPos.next = ListNode(carry)
+
+        return l
