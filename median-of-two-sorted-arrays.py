@@ -23,3 +23,26 @@ class Solution:
         #ib + ia == k
         ib = k - ia
         return self.getKthSmallest(A[ia:],B,ib) if A[ia-1] < B[ib-1] else self.getKthSmallest(A,B[ib:],ia)
+
+    #Use extra m+n space
+    def findMedianSortedArrays0(self, A, B):
+        pa, pb = 0, 0
+        m, n = len(A), len(B)
+        C = []
+        while pa < m and pb < n:
+            if A[pa] <= B[pb]:
+                C.append(A[pa])
+                pa += 1
+                continue
+            else:
+                C.append(B[pb])
+                pb += 1
+                continue
+        if pa < m:
+            C += A[pa:]
+        if pb < n:
+            C += B[pb:]
+        if (m+n) % 2 == 1:
+            return C[(m+n)/2]
+        else:
+            return 0.5 * (C[(m+n)/2]+C[(m+n)/2-1])
