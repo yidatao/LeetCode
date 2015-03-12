@@ -38,3 +38,18 @@ class Solution:
             # remove the first node (n = len(list))
             return head.next
 
+
+    # @return a ListNode
+    def removeNthFromEnd(self, head, n):
+        if head is None or n == 0: return head
+        count = 0
+        p = head
+        while p:
+            count += 1
+            p = p.next
+        if count == n: return head.next
+        p = head
+        for i in range(count - n - 1):
+            p = p.next
+        p.next = p.next.next
+        return head

@@ -1,6 +1,6 @@
 class Solution:
     # @return a string
-    def longestCommonPrefix(self, strs):
+    def longestCommonPrefix0(self, strs):
         if strs is None or len(strs) == 0:
             return ''
         if len(strs) == 1:
@@ -21,4 +21,16 @@ class Solution:
                 index += 1
             else:
                 break
+        return prefix
+
+    def longestCommonPrefix(self, strs):
+        if strs is None or len(strs) == 0: return ""
+        prefix = strs[0]
+        for i in range(1, len(strs)):
+            s = strs[i]
+            while not s.startswith(prefix) and len(prefix) > 0:
+                prefix = prefix[:-1]
+            if len(prefix) == 0:
+                return ""
+            continue
         return prefix
