@@ -2,7 +2,7 @@ class Solution:
     # @param S, a list of integer
     # @return a list of lists of integer
     # TODO need to revisit this problem
-    def subsets(self, S):
+    def subsets1(self, S):
         res = []
         S.sort()
         self.dfs(S,0,res)
@@ -18,5 +18,21 @@ class Solution:
             #then append the current element to all the subsets of the deeper layer
             res.extend([[array[i]] + item for item in res])
 
-S=[1,2,2]
+    def subsets(self, S):
+        res = []
+        S.sort()
+        self.recur(S, res)
+        return res
+
+    def recur(self, S, res):
+        if len(S) == 0:
+            res.append([]);
+        else:
+            self.recur(S[:-1], res)
+            tmp = list(res)
+            for ss in tmp:
+                res.append(ss + [S[-1]])
+
+
+S=[1,2,3]
 print(Solution().subsets(S))

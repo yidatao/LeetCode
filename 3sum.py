@@ -55,4 +55,31 @@ class Solution:
                         i3 -= 1
         return res
 
-print(Solution().threeSum1([0,0,0,0,1]))
+    def threeSum(self, num):
+        if num is None or len(num) < 3: return []
+        num.sort()
+        res = []
+        i = 0
+        while i < len(num)-2:
+            a = num[i]
+            j, k = i+1, len(num)-1
+            while j < k:
+                b, c = num[j], num[k]
+                if b + c == -a:
+                    if [a,b,c] not in res:
+                        res.append([a,b,c])
+                    while j < k and num[j] == b:
+                        j += 1
+                    while j < k and num[k] == c:
+                        k -= 1
+                elif b + c < -a:
+                    while j < k and num[j] == b:
+                        j += 1
+                else:
+                    while j < k and num[k] == c:
+                        k -= 1
+            while i < len(num)-2 and num[i] == a:
+                i += 1
+        return res
+
+print(Solution().threeSum([0,0,0]))
