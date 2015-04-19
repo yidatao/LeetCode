@@ -34,3 +34,23 @@ class Solution:
             curlevel = next_level
             leftToRight = not leftToRight
         return res
+
+    def zigzagLevelOrder1(self, root):
+        if root is None:
+            return []
+        res = []
+        fromLeft = True
+        queue = [root]
+        while queue:
+            level = []
+            size = len(queue)
+            for i in range(size):
+                node = queue.pop(0)
+                level.append(node.val)
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            res.append(list(level)) if fromLeft else res.append(list(level)[::-1])
+            fromLeft = not fromLeft
+        return res
