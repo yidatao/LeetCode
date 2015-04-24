@@ -14,3 +14,14 @@ class Solution:
                 #the number of unique trees for i = num of unique left trees * num of unique right trees
                 res[i] += res[j] * res[i-j-1]
         return res[n]
+
+    #Correct but TLE (recursion -> exponential?)
+    def numTrees(self, n):
+        if n == 0: return 1
+        if n <= 2: return n
+        res = 0
+        for i in range(1,n+1):
+            res += self.numTrees(i-1) * self.numTrees(n-i)
+        return res
+
+print(Solution().numTrees(15))
