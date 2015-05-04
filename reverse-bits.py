@@ -28,4 +28,12 @@ class Solution:
             power += 1
         return res
 
-print(Solution().reverseBits(1))
+    def reverseBits1(self, n):
+        ans = 0
+        for i in range(32):
+            ans <<= 1
+            ans |= n & 1
+            n >>= 1
+        return ans
+
+print(Solution().reverseBits1(11))

@@ -12,3 +12,10 @@ class Solution:
             n = n >> 1 #shift to right by 1 bit
         
         return sum(s)
+
+    def hammingWeight1(self, n):
+        res = 0
+        while n > 0:
+            res += n % 2
+            n >>= 1
+        return res
