@@ -33,6 +33,20 @@ class Solution:
             for ss in tmp:
                 res.append(ss + [S[-1]])
 
+    #Bit manipulation
+    def subsets2(self, S):
+        S.sort()
+        l = len(S)
+        ssize = 2 ** l #size of all subsets
+        res = []
+        for i in range(ssize):
+            tmp = []
+            for j in range(l):
+                if (i >> j) & 1:
+                    tmp.append(S[j])
+            res.append(tmp)
+        return res
+
 
 S=[1,2,3]
 print(Solution().subsets(S))
