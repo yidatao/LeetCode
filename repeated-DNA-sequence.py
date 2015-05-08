@@ -1,6 +1,22 @@
 class Solution:
     # @param {string} s
     # @return {string[]}
+
+    def findRepeatedDnaSequences0(self, s):
+        if s is None or len(s) < 10: return []
+        res = []
+        smap = {}
+        for i in range(len(s)-9):
+            ss = s[i:i+10]
+            if ss in smap:
+                smap[ss] += 1
+            else:
+                smap[ss] = 1
+        for k,v in smap.iteritems():
+            if v > 1:
+                res.append(k)
+        return res
+
     def findRepeatedDnaSequences(self, s):
         smap = {}
         for i in range(len(s)-9):

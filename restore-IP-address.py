@@ -22,3 +22,20 @@ class Solution:
             curPart = remainStr[:i]
             if str(int(curPart)) == curPart and int(curPart) <= 255:
                 self.func(part+1, val+'.'+curPart, remainStr[i:])
+
+    def restoreIpAddresses1(self, s):
+        res = []
+        self.recur(s, 4, "", res)
+        return res
+
+    def recur(self, s, part, curr, res):
+        if part == 1:
+            if s!= "" and str(int(s)) == s and int(s) <= 255:
+                curr += "." + s
+                res.append(curr[1:])
+            return
+        for i in range(3):
+            if i >= len(s): return
+            p = s[:i+1]
+            if str(int(p))==p and int(p) <= 255:
+                self.recur(s[i+1:], part-1, curr + "." + p, res)

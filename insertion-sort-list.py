@@ -27,3 +27,31 @@ class Solution:
             else:
                 cur = cur.next
         return dummy.next
+
+    def insertionSortList1(self, head):
+        if head is None or head.next is None: return head
+        dummy = ListNode(0)
+        dummy.next = head
+        q = head.next
+        while q:
+            p = dummy
+            while p.next.val < q.val:
+                p = p.next
+            if p.next != q:
+                tmp = q.next
+                q.next = p.next
+                p.next = q
+                q = tmp
+            else:
+                q = q.next
+        return dummy.next
+
+head = ListNode(5)
+head.next = ListNode(3)
+head.next.next = ListNode(4)
+#head.next.next.next = ListNode(1)
+# head.next.next.next.next = ListNode(2)
+sl = Solution().insertionSortList1(head)
+while sl:
+    print(sl.val)
+    sl = sl.next
