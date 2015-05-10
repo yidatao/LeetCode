@@ -18,4 +18,14 @@ class Solution:
             #remove this element and try another
             c.pop()
 
-print(Solution().combine(5,3))
+
+    def combine1(self, n, k):
+        return self.func(range(1,n+1), k)
+
+    def func(self, l, k):
+        if k == 0: return [[]]
+        if l == []: return []
+        #don't forget the second part
+        return [[l[0]] + x for x in self.func(l[1:], k-1)] + self.func(l[1:], k)
+
+print(Solution().combine1(5,3))
